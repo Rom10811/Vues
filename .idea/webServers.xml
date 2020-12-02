@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c63e9ae3-7892-4a8c-bb67-0d1f3be2ff43" name="insset.ovh">
+        <fileTransfer accessType="SFTP" host="insset.ovh" port="22" sshConfigId="f3fbe3cb-6e95-44e9-9636-4fb4d524903b" sshConfig="sftp.romain.duciel@insset.ovh:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

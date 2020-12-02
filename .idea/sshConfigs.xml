@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="insset.ovh" id="f3fbe3cb-6e95-44e9-9636-4fb4d524903b" keyPath="C:\Users\Romain\Desktop\Cours\Vues\ssh_keys\id_rsa" port="22" nameFormat="DESCRIPTIVE" username="sftp.romain.duciel" />
+      <sshConfig host="insset.ovh" id="c997921e-8888-443f-922e-599e1658d93a" keyPath="C:\Users\Romain\Desktop\Cours\Vues\ssh_keys\id_rsa" port="22" nameFormat="DESCRIPTIVE" username="romain.duciel" />
+    </configs>
+  </component>
+</project>
