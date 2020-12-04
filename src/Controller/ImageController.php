@@ -3,34 +3,43 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ImageController extends AbstractController
 {
 
-    //Definir chemin pour le répertoire images
-    const PATH_IMG = __DIR__."/../../images";
-
     /**
-     * @Route("/img/home", name="home")
+     * @Route("/img/menu", name="menu")
+     * @return Response
      */
-    public function home()
-    {
-        return $this->render('img/home.html.twig');
+    public function menu(){
+        $bibliothequeImages = scandir(self::CHEMIN_IMAGE);
+        foreach ( $bibliothequeImages as $clé => $chemin){
+            if(is_dir($chemin))
+            {
+                unset( $bibliothequeImages[$clé]);
+            }
+            else
+            {
+                $bibliothequeImages[$clé] = substr($chemin, 0, -4);
+            }
+        }
+        return $this->render('img/menu.html.twig',['url'=>'/img/data/', 'photos'=>$bibliothequeImages]);
     }
 
 
     /**
      * @Route("/img/data/{nom}", name="affiche")
      * @param $nom
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function affiche($nom){
-        $nomFichier = self::PATH_IMG."/$nom.jpg";
+        $nomFichier = self::CHEMIN_IMAGE."/$nom.jpg";
         if(!file_exists($nomFichier))
         {
-            throw $this->createNotFoundException('Image inconnue');
+            throw $this->createNotFoundException('Image inconnue ou introuvable');
         }
         else
         {
@@ -38,22 +47,15 @@ class ImageController extends AbstractController
         }
     }
 
+
+
+    const CHEMIN_IMAGE = __DIR__."/../../images";
+
     /**
-     * @Route("/img/menu", name="menu")
-     * @return Response
+     * @Route("/img/home", name="home")
      */
-    public function menu(){
-        $bibliothequeImages = scandir(self::PATH_IMG);
-        foreach ( $bibliothequeImages as $clé => $chemin){
-        if(is_dir($chemin))
-        {
-            unset( $bibliothequeImages[$clé]);
-        }
-        else
-        {
-            $bibliothequeImages[$clé] = substr($chemin, 0, -4);
-        }
-        }
-        return $this->render('img/menu.html.twig',['url'=>'/img/data/', 'photos'=>$bibliothequeImages]);
+    public function home()
+    {
+        return $this->render('img/home.html.twig');
     }
 }
