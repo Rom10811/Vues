@@ -16,14 +16,14 @@ class ImageController extends AbstractController
      */
     public function menu(){
         $bibliothequeImages = scandir(self::CHEMIN_IMAGE);
-        foreach ( $bibliothequeImages as $clé => $chemin){
+        foreach ( $bibliothequeImages as $index => $chemin){
             if(is_dir($chemin))
             {
-                unset( $bibliothequeImages[$clé]);
+                unset( $bibliothequeImages[$index]);
             }
             else
             {
-                $bibliothequeImages[$clé] = substr($chemin, 0, -4);
+                $bibliothequeImages[$index] = substr($chemin, 0, -4);
             }
         }
         return $this->render('img/menu.html.twig',['url'=>'/img/data/', 'photos'=>$bibliothequeImages]);
